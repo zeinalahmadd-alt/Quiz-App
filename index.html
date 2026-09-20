@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle" title="Toggle Dark Mode">?</button>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- ==================== START SCREEN ==================== -->
+    <div id="start-screen" class="screen active">
+        <!-- Compact History Card (left side) -->
+        <div id="start-history-section" class="history-section history-start">
+            <div class="history-header">
+                <h3 class="history-title">Previous Attempts</h3>
+                <button id="clear-history-btn-start" class="clear-history-btn" title="Clear History">Clear</button>
+            </div>
+            <div id="start-history-list" class="history-list">
+                <!-- History items injected here -->
+            </div>
+            <p id="start-history-empty" class="history-empty hidden">No previous attempts yet. Play a quiz to see your history!</p>
+        </div>
+
+        <div class="screen-content">
+            <div class="logo">
+                <span class="logo-icon">?</span>
+            </div>
+            <h1>Welcome to Quiz App</h1>
+            <p>Test your knowledge with our fun quizzes!</p>
+            <button id="start-btn" class="btn btn-primary">Start Quiz</button>
+        </div>
+    </div>
+
+    <!-- ==================== CATEGORY SCREEN ==================== -->
+    <div id="category-screen" class="screen">
+        <div class="screen-content">
+            <h2>Select Category</h2>
+            <div class="category-grid">
+                <div class="category-card" data-category="javascript">
+                    <span class="category-icon">JS</span>
+                    <span class="category-name">JavaScript</span>
+                </div>
+                <div class="category-card" data-category="html">
+                    <span class="category-icon">&lt;/&gt;</span>
+                    <span class="category-name">HTML</span>
+                </div>
+                <div class="category-card" data-category="css">
+                    <span class="category-icon">#</span>
+                    <span class="category-name">CSS</span>
+                </div>
+                <div class="category-card" data-category="general">
+                    <span class="category-icon">*</span>
+                    <span class="category-name">General</span>
+                </div>
+            </div>
+            <button id="category-back-btn" class="btn btn-secondary">Back</button>
+        </div>
+    </div>
+
+    <!-- ==================== DIFFICULTY SCREEN ==================== -->
+    <div id="difficulty-screen" class="screen">
+        <div class="screen-content">
+            <h2>Select Difficulty</h2>
+            <div class="difficulty-buttons">
+                <button class="difficulty-btn" data-difficulty="easy">
+                    <span class="diff-label">Easy</span>
+                    <span class="diff-desc">10 questions • 30s each</span>
+                </button>
+                <button class="difficulty-btn" data-difficulty="medium">
+                    <span class="diff-label">Medium</span>
+                    <span class="diff-desc">15 questions • 20s each</span>
+                </button>
+                <button class="difficulty-btn" data-difficulty="hard">
+                    <span class="diff-label">Hard</span>
+                    <span class="diff-desc">20 questions • 10s each</span>
+                </button>
+            </div>
+            <button id="difficulty-back-btn" class="btn btn-secondary">Back</button>
+        </div>
+    </div>
+
+    <!-- ==================== QUIZ SCREEN ==================== -->
+    <div id="quiz-screen" class="screen">
+        <div class="quiz-container">
+            <!-- Header with timer and progress -->
+            <div class="quiz-header">
+                <div class="quiz-info">
+                    <span id="question-counter">Question 1/10</span>
+                    <span id="score-display">Score: 0</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                <div id="timer" class="timer">
+                    <span id="timer-value">30</span>s
+                </div>
+            </div>
+
+            <!-- Question Area -->
+            <div class="question-area">
+                <h3 id="question-text" class="question-text">Question goes here?</h3>
+            </div>
+
+            <!-- Answers Grid -->
+            <div id="answers-grid" class="answers-grid">
+                <button class="answer-btn" data-index="0">
+                    <span class="answer-letter">A</span>
+                    <span class="answer-text">Answer 1</span>
+                </button>
+                <button class="answer-btn" data-index="1">
+                    <span class="answer-letter">B</span>
+                    <span class="answer-text">Answer 2</span>
+                </button>
+                <button class="answer-btn" data-index="2">
+                    <span class="answer-letter">C</span>
+                    <span class="answer-text">Answer 3</span>
+                </button>
+                <button class="answer-btn" data-index="3">
+                    <span class="answer-letter">D</span>
+                    <span class="answer-text">Answer 4</span>
+                </button>
+            </div>
+
+            <!-- Next Button (hidden initially) -->
+            <button id="next-btn" class="btn btn-primary next-btn hidden">Next Question</button>
+        </div>
+    </div>
+
+    <!-- ==================== RESULT SCREEN ==================== -->
+    <div id="result-screen" class="screen">
+        <div class="result-layout">
+            <div class="screen-content result-main">
+                <div class="result-card">
+                    <div id="result-icon" class="result-icon">?</div>
+                    <h2 id="result-title">Quiz Complete!</h2>
+                    <p id="result-message" class="result-message">Great job!</p>
+                    
+                    <div class="score-circle">
+                        <span id="final-score" class="final-score">0</span>
+                        <span class="score-label">Points</span>
+                    </div>
+
+                    <div class="result-stats">
+                        <div class="stat">
+                            <span id="stat-correct" class="stat-value">0</span>
+                            <span class="stat-label">Correct</span>
+                        </div>
+                        <div class="stat">
+                            <span id="stat-wrong" class="stat-value">0</span>
+                            <span class="stat-label">Wrong</span>
+                        </div>
+                        <div class="stat">
+                            <span id="stat-time" class="stat-value">0s</span>
+                            <span class="stat-label">Avg Time</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-buttons">
+                    <button id="restart-btn" class="btn btn-primary">Play Again</button>
+                    <button id="home-btn" class="btn btn-secondary">Home</button>
+                </div>
+            </div>
+
+            <!-- ==================== HISTORY SIDE PANEL ==================== -->
+            <div id="history-section" class="history-section history-side">
+                <div class="history-header">
+                    <h3 class="history-title">Previous Attempts</h3>
+                    <button id="clear-history-btn" class="clear-history-btn" title="Clear History">Clear</button>
+                </div>
+                <div id="history-list" class="history-list">
+                    <!-- History items injected here -->
+                </div>
+                <p id="history-empty" class="history-empty hidden">No previous attempts yet. Play a quiz to see your history!</p>
+            </div>
+        </div>
+    </div>
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
